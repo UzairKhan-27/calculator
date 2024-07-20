@@ -24,18 +24,12 @@ let operate=(firstNumber,secondNumber,operator)=> {
     }
     return result;
 };
+
 const digitKeys=document.querySelectorAll(".digits button");
 const operatorKeys=document.querySelectorAll(".operators button");
 
-// let array=Array.from(allKeys);
-// console.log(allKeys.length);
-// console.log(array[0]);
-// const num9=document.querySelector("#num9");
-// num9.addEventListener("click",event=>{
-//     console.log(allKeys.item(17).id);
-// });      converted to array
-
-let firstNumber="undefined",secondNumber="undefined",operator="undefined";
+let secondNumberFlag=0;
+let firstNumber="",secondNumber="",operator="";
 let display=0
 let screen=document.querySelector(".screen");
 screen.textContent="";
@@ -47,42 +41,82 @@ function getNumber(key)
             case "num0":
                 console.log(key.id);
                 screen.textContent+=0;
+                if(secondNumberFlag===0)
+                    firstNumber+=0;
+                else
+                    secondNumber+=0;
                 break;
             case "num1":
                 console.log(key.id);
                 screen.textContent+=1;
+                if(secondNumberFlag===0)
+                    firstNumber+=1;
+                else
+                    secondNumber+=1;
                 break;
             case "num2":
                 console.log(key.id);
                 screen.textContent+=2;
+                if(secondNumberFlag===0)
+                    firstNumber+=2;
+                else
+                    secondNumber+=2;
                 break;
             case "num3":
                 console.log(key.id);
                 screen.textContent+=3;
+                if(secondNumberFlag===0)
+                    firstNumber+=3;
+                else
+                    secondNumber+=3;
                 break;
             case "num4":
                 console.log(key.id);
                 screen.textContent+=4;
+                if(secondNumberFlag===0)
+                    firstNumber+=4;
+                else
+                    secondNumber+=4;
                 break;
             case "num5":
                 console.log(key.id);
                 screen.textContent+=5;
+                if(secondNumberFlag===0)
+                    firstNumber+=5;
+                else
+                    secondNumber+=5;
                 break;
             case "num6":
                 console.log(key.id);
                 screen.textContent+=6;
+                if(secondNumberFlag===0)
+                    firstNumber+=6;
+                else
+                    secondNumber+=6;
                 break;
             case "num7":
                 console.log(key.id);
                 screen.textContent+=7;
+                if(secondNumberFlag===0)
+                    firstNumber+=7;
+                else
+                    secondNumber+=7;
                 break;
             case "num8":
                 console.log(key.id);
                 screen.textContent+=8;
+                if(secondNumberFlag===0)
+                    firstNumber+=8;
+                else
+                    secondNumber+=8;
                 break;
             case "num9":
                 console.log(key.id);
                 screen.textContent+=9;
+                if(secondNumberFlag===0)
+                    firstNumber+=9;
+                else
+                    secondNumber+=9;
                 break;
             case "numDEL":
                 console.log(key.id);
@@ -99,8 +133,7 @@ function getNumber(key)
                 console.log("error");
                 break;
         }
-        if(!(screen.textContent===""))
-            firstNumber=screen.textContent;
+   
 }
 function getOperator(key)
 {
@@ -123,7 +156,7 @@ function getOperator(key)
 }
 digitKeys.forEach((key)=>{
 
-    if(secondNumber==="undefined")
+    if(secondNumber==="")
     {
         key.addEventListener("click",(event)=>{        
             getNumber(key);
@@ -132,16 +165,17 @@ digitKeys.forEach((key)=>{
     }
     else
     {
-        screen.textContent=operate(firstNumber,operator,secondNumber)
+        screen.textContent=operate(firstNumber,secondNumber,operator);
     }
 });
 
 operatorKeys.forEach((key)=>{
 
     key.addEventListener("click",(event)=>{
-        if(firstNumber==="undefined")
+        if(firstNumber==="")
             return;
         getOperator(key);
+        secondNumberFlag=1;
         console.log(firstNumber);
         console.log(key.id);
     });
