@@ -146,7 +146,7 @@ function getOperator(key)
             operator="-";
             break;
         case "multiply":
-            operator="x";
+            operator="*";
             break;
         case "divide":
             operator="/";
@@ -156,17 +156,21 @@ function getOperator(key)
 }
 digitKeys.forEach((key)=>{
 
-    if(secondNumber==="")
-    {
-        key.addEventListener("click",(event)=>{        
+    
+    key.addEventListener("click",(event)=>{ 
+        if(secondNumber==="")
+        {       
             getNumber(key);
             console.log(firstNumber);  
-        });
-    }
-    else
-    {
-        screen.textContent=operate(firstNumber,secondNumber,operator);
-    }
+        }
+        else
+        {
+            screen.textContent=operate(firstNumber,secondNumber,operator);
+            firstNumber=screen.textContent;
+            console.log("HERE BC");
+        }
+    });
+    
 });
 
 operatorKeys.forEach((key)=>{
@@ -175,7 +179,7 @@ operatorKeys.forEach((key)=>{
         if(firstNumber==="")
             return;
         getOperator(key);
-        secondNumberFlag=1;
+        secondNumberFlag=!secondNumberFlag;
         console.log(firstNumber);
         console.log(key.id);
     });
