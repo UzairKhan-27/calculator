@@ -25,6 +25,7 @@ let operate=(firstNumber,secondNumber,operator)=> {
     return result;
 };
 const digitKeys=document.querySelectorAll(".digits button");
+const operatorKeys=document.querySelectorAll(".operators button");
 
 // let array=Array.from(allKeys);
 // console.log(allKeys.length);
@@ -34,17 +35,13 @@ const digitKeys=document.querySelectorAll(".digits button");
 //     console.log(allKeys.item(17).id);
 // });      converted to array
 
-let firstNumber,secondNumber,operator=undefined;
+let firstNumber="undefined",secondNumber="undefined",operator="undefined";
 let display=0
 let screen=document.querySelector(".screen");
 screen.textContent="";
-
-digitKeys.forEach((key)=>{
-    console.log(key.id);
-    key.addEventListener("click",(event)=>{
-        
-        // getNumber(key);
-        switch(key.id)
+function getNumber(key)
+{
+    switch(key.id)
         {
             
             case "num0":
@@ -87,10 +84,65 @@ digitKeys.forEach((key)=>{
                 console.log(key.id);
                 screen.textContent+=9;
                 break;
+            case "numDEL":
+                console.log(key.id);
+                let str=screen.textContent
+                screen.textContent=str.substring(0, str.length - 1);;
+                break;
+            case "numAC":
+                screen.textContent="";
+                firstNumber="undefined";
+                secondNumber="undefined";
+                operator="undefined";
+                break;
             default:
                 console.log("error");
                 break;
         }
-        
+        if(!(screen.textContent===""))
+            firstNumber=screen.textContent;
+}
+function getOperator(key)
+{
+    switch(key.id)
+    {
+        case "add":
+            operator="+";
+            break;
+        case "subtract":
+            operator="-";
+            break;
+        case "multiply":
+            operator="x";
+            break;
+        case "divide":
+            operator="/";
+            break;
+    }
+    screen.textContent=screen.textContent+" "+operator+" ";
+}
+digitKeys.forEach((key)=>{
+
+    if(secondNumber==="undefined")
+    {
+        key.addEventListener("click",(event)=>{        
+            getNumber(key);
+            console.log(firstNumber);  
+        });
+    }
+    else
+    {
+        screen.textContent=operate(firstNumber,operator,secondNumber)
+    }
+});
+
+operatorKeys.forEach((key)=>{
+
+    key.addEventListener("click",(event)=>{
+        if(firstNumber==="undefined")
+            return;
+        getOperator(key);
+        console.log(firstNumber);
+        console.log(key.id);
     });
 });
