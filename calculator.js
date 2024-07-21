@@ -7,7 +7,7 @@ let operate=(firstNumber,secondNumber,operator)=> {
     switch(operator)
     {
         case "+":
-            result=add(firstNumber,secondNumber);
+            result=add(Number(firstNumber),Number(secondNumber));
             break;
         case "-":
             result=subtract(firstNumber,secondNumber);
@@ -27,7 +27,6 @@ let operate=(firstNumber,secondNumber,operator)=> {
 
 const digitKeys=document.querySelectorAll(".digits button");
 const operatorKeys=document.querySelectorAll(".operators button");
-
 let secondNumberFlag=0;
 let firstNumber="",secondNumber="",operator="";
 let display=0
@@ -152,23 +151,22 @@ function getOperator(key)
             operator="/";
             break;
     }
-    screen.textContent=screen.textContent+" "+operator+" ";
+    // screen.textContent=screen.textContent+" "+operator+" ";
+    screen.textContent=firstNumber+operator+secondNumber;
 }
 digitKeys.forEach((key)=>{
 
     
     key.addEventListener("click",(event)=>{ 
-        if(secondNumber==="")
-        {       
-            getNumber(key);
-            console.log(firstNumber);  
-        }
-        else
-        {
-            screen.textContent=operate(firstNumber,secondNumber,operator);
-            firstNumber=screen.textContent;
-            console.log("HERE BC");
-        }
+        
+        getNumber(key);
+        console.log(firstNumber);  
+        // else
+        // {
+        //     screen.textContent=operate(firstNumber,secondNumber,operator);
+        //     firstNumber=screen.textContent;
+        //     console.log("HERE BC");
+        // }
     });
     
 });
@@ -178,6 +176,13 @@ operatorKeys.forEach((key)=>{
     key.addEventListener("click",(event)=>{
         if(firstNumber==="")
             return;
+        if(!(firstNumber==="" || secondNumber===""))
+        {
+            screen.textContent=operate(firstNumber,secondNumber,operator);
+            firstNumber=screen.textContent;
+            console.log("HERE BC");
+            secondNumber=""; 
+        }
         getOperator(key);
         secondNumberFlag=!secondNumberFlag;
         console.log(firstNumber);
