@@ -6,7 +6,8 @@ body
     justify-content: center;
     align-items: center;
     align-content: center;
-    background-image: url("./images/images.png");
+    background-image: url("./images/pexels-fwstudio-33348-172277.jpg");
+    background-size:cover;
 }
 .digits
 {
