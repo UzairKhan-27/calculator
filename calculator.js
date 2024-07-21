@@ -118,6 +118,14 @@ function getNumber(key)
                 else
                     secondNumber+=9;
                 break;
+            case "decimal":
+                console.log(key.id);
+                screen.textContent+=".";
+                if(secondNumberFlag===0)
+                    firstNumber+=".";
+                else
+                    secondNumber+=".";
+                break;
             case "numDEL":
                 console.log(key.id);
                 let str=screen.textContent
@@ -134,7 +142,6 @@ function getNumber(key)
                 console.log("error");
                 break;
         }
-   
 }
 function getOperator(key)
 {
@@ -153,7 +160,6 @@ function getOperator(key)
             operator="/";
             break;
     }
-    // screen.textContent=screen.textContent+" "+operator+" ";
     screen.textContent=firstNumber+operator+secondNumber;
 }
 digitKeys.forEach((key)=>{
@@ -163,12 +169,6 @@ digitKeys.forEach((key)=>{
         
         getNumber(key);
         console.log(firstNumber);  
-        // else
-        // {
-        //     screen.textContent=operate(firstNumber,secondNumber,operator);
-        //     firstNumber=screen.textContent;
-        //     console.log("HERE BC");
-        // }
     });
     
 });
