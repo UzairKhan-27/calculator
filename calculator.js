@@ -27,6 +27,7 @@ let operate=(firstNumber,secondNumber,operator)=> {
 
 const digitKeys=document.querySelectorAll(".digits button");
 const operatorKeys=document.querySelectorAll(".operators button");
+const equals=document.querySelector("#equals");
 let secondNumberFlag=0;
 let firstNumber="",secondNumber="",operator="";
 let display=0
@@ -188,4 +189,16 @@ operatorKeys.forEach((key)=>{
         console.log(firstNumber);
         console.log(key.id);
     });
+});
+equals.addEventListener("click",(event)=>{
+    if(firstNumber!=="" && secondNumber!=="" && operator!=="")
+    {
+        screen.textContent=operate(firstNumber,secondNumber,operator);
+        firstNumber=screen.textContent;
+        console.log("EQUALS");
+        secondNumber=""; 
+        secondNumberFlag=0;
+    }
+    else
+        return;
 });
