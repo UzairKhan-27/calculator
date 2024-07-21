@@ -185,7 +185,8 @@ digitKeys.forEach((key)=>{
 
     
     key.addEventListener("click",(event)=>{ 
-        
+        if(screen.textContent.length>14)
+            return;
         getNumber(key);
         console.log(firstNumber);  
     });
