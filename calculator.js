@@ -184,6 +184,7 @@ operatorKeys.forEach((key)=>{
             firstNumber=screen.textContent;
             console.log("HERE BC");
             secondNumber=""; 
+            operator="";
         }
         getOperator(key);
         secondNumberFlag=!secondNumberFlag;
@@ -197,7 +198,8 @@ equals.addEventListener("click",(event)=>{
         screen.textContent=operate(firstNumber,secondNumber,operator);
         firstNumber=screen.textContent;
         console.log("EQUALS");
-        secondNumber=""; 
+        secondNumber="";
+        operator=""; 
         secondNumberFlag=0;
     }
     else
