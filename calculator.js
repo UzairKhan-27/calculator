@@ -125,9 +125,10 @@ function getNumber(key)
                 break;
             case "numAC":
                 screen.textContent="";
-                firstNumber="undefined";
-                secondNumber="undefined";
-                operator="undefined";
+                firstNumber="";
+                secondNumber="";
+                operator="";
+                secondNumberFlag=0;
                 break;
             default:
                 console.log("error");
