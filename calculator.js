@@ -133,8 +133,21 @@ function getNumber(key)
                 break;
             case "numDEL":
                 console.log(key.id);
-                let str=screen.textContent
-                screen.textContent=str.substring(0, str.length - 1);;
+                if(secondNumber!=="")
+                {
+                    secondNumber="";
+                    screen.textContent=firstNumber+operator;
+                }
+                else if((operator!==""))
+                {
+                    operator="";
+                    screen.textContent=firstNumber;
+                }
+                else if((firstNumber!==""))
+                {
+                    firstNumber="";
+                    screen.textContent="";
+                }
                 break;
             case "numAC":
                 screen.textContent="";
