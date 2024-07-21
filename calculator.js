@@ -22,6 +22,7 @@ let operate=(firstNumber,secondNumber,operator)=> {
             result="Error";
             break;
     }
+    result = Math.round(result*10)/10;
     return result;
 };
 
@@ -31,6 +32,7 @@ const equals=document.querySelector("#equals");
 let secondNumberFlag=0;
 let firstNumber="",secondNumber="",operator="";
 let display=0
+let decimalFlag=0;
 let screen=document.querySelector(".screen");
 screen.textContent="";
 function getNumber(key)
@@ -119,12 +121,15 @@ function getNumber(key)
                     secondNumber+=9;
                 break;
             case "decimal":
+                if(decimalFlag===1)
+                    break;
                 console.log(key.id);
                 screen.textContent+=".";
                 if(secondNumberFlag===0)
                     firstNumber+=".";
                 else
                     secondNumber+=".";
+                decimalFlag=1;
                 break;
             case "numDEL":
                 console.log(key.id);
@@ -160,6 +165,7 @@ function getOperator(key)
             operator="/";
             break;
     }
+    decimalFlag=0;
     screen.textContent=firstNumber+operator+secondNumber;
 }
 digitKeys.forEach((key)=>{
